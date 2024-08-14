@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil Paciente</title>
+    <link rel="stylesheet" href="/css/pe_paciente.css">
+    <script src="https://kit.fontawesome.com/95789fc486.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo"><img src="/img/dashboardA/estetoscopio.png" alt="logo"></div>
+        <ul class="menu">
+
+            <div class="profile-emp">
+                <img src="/img/dashboardE/nurse.png" alt="Foto de perfil del paciente" class="img-profile">
+                <h2 class="emp-info" th:text="${perfil[2]}">ID Empleado</h2>
+            </div>
+
+            <li class="#">
+                <a href="/dashboardE">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Agenda</span>
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="#">
+                    <i class="fa-solid fa-bed-pulse"></i>
+                    <span>Paciente</span>
+                </a>
+            </li>
+
+            <li class="#">
+                <a href="/notaEnfermeria">
+                    <i class="fa-solid fa-book-medical"></i>
+                    <span>Nota de Enfermería</span>
+                </a>
+            </li>
+
+            <li class="logout">
+                <a href="/logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Salir</span>
+                </a>
+            </li>    
+
+
+        </ul>
+    </div>
+
+    <div class="main-content">
+
+        <div class="header--wrapper">
+            <div class="header-title">
+                <span>Nota de Enfermería</span>
+                <h2 th:text="${perfil[0]} + ' ' + ${perfil[1]}"> </h2>
+            </div>
+
+            <div class="header-details">
+                <span>Fecha de la nota:</span>
+                <h2 id="fechaNota"></h2>
+            </div>
+            
+            <div class="header-details">
+                <span>Hora de la nota:</span>
+                <h2 id="horaNota"></h2>
+            </div>
+            
+        </div>
+
+        <div class="c-container">
+
+            <div class="card-container">
+                <div class="card-profile">
+                    <div class="profile-port">
+                        <p class="title-pa" style="color: white;">Datos médicos</p>
+                            <br>
+                            <p class="title-subpa" style="color: white; font-weight: bold;">Historial de Salud:</p>
+                            <br>
+                            <div class="content-pa">
+                                
+                                <ul class="list-pa">
+                                    <li style="color: white;">Sexo: <span th:text="${perfil[9]}"></span></li>
+                                    <li style="color: white;">RH: <span th:text="${perfil[7]}"></span></li>
+                                    <li style="color: white;">Alergia: <span th:text="${perfil[11]}"></span></li>
+                                    <li style="color: white;">Baño: <span th:text="${perfil[13]}"></span></li>
+                                    <li style="color: white;">Alimentación: <span th:text="${perfil[12]}"></span></li>
+                                    <li style="color: white;">Autonomía: <span th:text="${perfil[14]}"></span></li>
+                                    <li style="color: white;">Pañal: <span th:text="${perfil[16]}"></span></li>
+                                    <li style="color: white;">Audífonos: <span th:text="${perfil[22]}"></span></li>
+                                    <li style="color: white;">Marca Pasos: <span th:text="${perfil[23]}"></span></li>
+                                    <li style="color: white;">Prótesis Dental: <span th:text="${perfil[24]}"></span></li>
+                                </ul>
+                            </div>
+                    
+                        </div>
+
+                    <div class="profile-info">
+
+                        <div class="head-profile">
+                            <p class="title-profile" style="color: white;">Datos básicos</p>
+                        </div>
+
+                        <div class="content-profile">
+                            <br>
+                            <p class="title-profile" style="font-weight: bold; color: white;">Información del Paciente:</p>
+                            <ul class="list">
+                                <li style="color: white;">Edad: <span th:text="${perfil[10]}"></span></li>
+                                <li style="color: white;">Paciente: <span th:text="${perfil[3]} + ' ' + ${perfil[4]}"></span></li>
+                                <li style="color: white;">Acudiente: <span th:text="${perfil[18]} + ' ' + ${perfil[19]}"></span></li>
+                                <li style="color: white;">Parentesco: <span th:text="${perfil[17]}"></span></li>
+                                <li style="color: white;">Dirección: <span th:text="${perfil[6]}"></span></li>
+                                <li style="color: white;">Teléfono: <span th:text="${perfil[20]}"></span></li>
+                                <li style="color: white;">Eps: <span th:text="${perfil[8]}"></span></li>
+                            </ul>
+                        </div>
+
+
+                        <div class="action">
+                            <a th:href="@{/descargarPdf(identificacion=${perfil[5]})}" class="btn">Ver historial</a>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    </div>
+</body>
+<script>
+function actualizarFechaHora() {
+    const ahora = new Date(); 
+
+    // Formatea la fecha como "DD/MM/YYYY"
+    const fecha = ahora.toLocaleDateString('es', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+    });
+
+    let horas = ahora.getHours();
+    const minutos = ahora.getMinutes();
+    const esAM = horas < 12;
+    if (horas === 0) {
+        horas = 12; 
+    } else if (horas > 12) {
+        horas -= 12;
+    }
+
+    const minutosFormateados = minutos < 10 ? `0${minutos}` : minutos;
+    const hora = `${horas}:${minutosFormateados} ${esAM ? 'a.m.' : 'p.m.'}`;
+
+    document.getElementById('fechaNota').textContent = fecha;
+    document.getElementById('horaNota').textContent = hora;
+}
+
+actualizarFechaHora();
+
+setInterval(actualizarFechaHora, 60000);
+</script>
+</html>

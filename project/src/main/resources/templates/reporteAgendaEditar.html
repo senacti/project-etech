@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/reporte-agenda/css/reporte_editar.css">
+    <title>Horario</title>
+</head>
+<body>
+<div class="container">
+    <div class="title">Horario</div>
+    <form action="/actualizarReporte" method="POST">
+
+        <input hidden type="text" name="idAgenda" th:value="${idAgenda}">
+        <input hidden type="datetime-local" name="diario" th:value="${diario}">
+
+        <div class="user-details">
+
+            <div class="input-box">
+                <span class="details">Servicio</span>
+                <input type="text" name="Servicio" th:value="${TpoServicio}" required readonly>
+            </div>
+
+            <div class="input-box">
+                <span class="details">Turno</span>
+                <input type="text" name="Turno" th:value="${TpoTurno}" required readonly>
+            </div>
+
+            <div class="input-box">
+                <span class="details">Paciente</span>
+                <input type="text" name="Paciente" th:value="${nombrePaciente}" required readonly>
+            </div>
+
+            <div class="input-box">
+                <span class="details">Empleado</span>
+                <input type="text" name="Empleado" th:value="${nombreEmpleado}" required readonly>
+            </div>
+
+            <div class="input-box">
+                <span class="details">Fecha de Inicio</span>
+                <input type="datetime-local" placeholder="Ingresa la fecha de inicio" name="inicioFH" th:value="${inicioFH}" required>
+            </div>
+
+            <div class="input-box">
+                <span class="details">Fecha de Fin</span>
+                <input type="datetime-local" placeholder="Ingresa la fecha de fin" name="finFH" th:value="${finFH}" required>
+            </div>
+
+        </div>
+        <div class="button">
+            <input type="submit" value="Actualizar">
+        </div>
+    </form>
+</div>
+</body>
+</html>

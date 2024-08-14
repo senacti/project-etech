@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/dashboard_agenda.css">
+    <script src="https://kit.fontawesome.com/95789fc486.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <script src="js/agenda.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Agenda</title>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo"><img src="/img/dashboardA/estetoscopio.png" alt="logo"></div>
+        <ul class="menu">
+
+            <li>
+                <a href="/dashboardA">
+                    <i class="fa-solid fa-house-user"></i>
+                    <span>Inicio</span>
+                </a>
+            </li>
+
+            <li class="list__item">
+                <div class="list__button list__button--click">
+                    <i class="fas fa-user"></i>
+                    <span>Perfil</span>
+                    <i class="fa-solid fa-chevron-right list__arrow"></i>
+                </div>
+                <ul class="list__show">
+                    <li class="list__inside">
+                        <a href="../Dashboard_Empleado/perfil_emp.php" class="nav__link nav__link--inside">Empleado</a>
+                    </li>
+                    <li class="list__inside">
+                        <a href="../Dashboard_Paciente/perfil_paciente.php" class="nav__link nav__link--inside">Paciente</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="active_a">
+                <a href="#">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Agenda</span>
+                </a>
+            </li>
+
+            <li class="list__item">
+                <div class="list__button list__button--click">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Reporte</span>
+                    <i class="fa-solid fa-chevron-right list__arrow"></i>
+                </div>
+                <ul class="list__show">
+                    <li class="list__inside">
+                        <a href="/reporteAgenda" class="nav__link nav__link--inside">Agenda</a>
+                    </li>
+                    <li class="list__inside">
+                        <a href="#" class="nav__link nav__link--inside">Enfermeria</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="/registro">
+                    <i class="fa-solid fa-hospital-user"></i>
+                    <span>Registro</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="../../Error 500/Error500.php">
+                    <i class="fas fa-cog"></i>
+                    <span>Ajustes</span>
+                </a>
+            </li>
+
+            <li class="logout">
+                <a href="/logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Salir</span>
+                </a>
+            </li>    
+
+        </ul>
+    </div>
+
+    <div class="main-content">
+
+        <div class="header--wrapper">
+            <div class="header-title">
+                <span style="color:#1d2d62;">Administrador</span>
+                <h2><span style="color:#1d2d62;" th:text="${nombreAdmin}">Nombre y Apellido Administrador</span></h2>
+            </div>
+            
+            <div class="user--info">
+                <div class="searh--box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Buscar">
+                </div>
+                <img src="/img/dashboardA/fotoperfil.png">
+            </div>
+        </div>
+        <div class="calendar-container">
+
+            <div class="wrapper">
+                <header>
+                    <p class="current-date" style="color: white;"></p>
+                    <div class="icons">
+                        <span id="prev" class="material-symbols-rounded">chevron_left</span>
+                        <span id="next" class="material-symbols-rounded">chevron_right</span>
+                    </div>
+                </header>
+                <div class="calendar">
+                    <ul class="weeks">
+                        <li>Lun</li>
+                        <li>Mar</li>
+                        <li>Mie</li>
+                        <li>Jue</li>
+                        <li>Vie</li>
+                        <li>Sab</li>
+                        <li>Dom</li>
+                    </ul>
+                    <ul class="days"></ul>
+                </div>
+            </div>
+
+
+            <!-- Datos de agendamiento -->
+            <form action="/AgendaAdmin" method="post">
+                <div class="datos"><br>
+                    <div class="titulo">
+                        <h2 style="color: white;">Datos de Agendamiento</h2>
+                    </div>
+                    <br>
+                    <i class="fa-solid fa-calendar-day" style="color: white; font-size: 30px;"></i>
+                    <div class="box-1">
+                        <select id="empleado" name="empleado" required>
+                            <option value="" disabled selected>Seleccionar Empleado</option>
+                            <th:block th:each="empleado : ${empleados}">
+                                <option th:value="${empleado.identificacionE}"
+                                    th:text="${empleado.nombreE} + ' ' + ${empleado.apellidoE}"></option>
+                            </th:block>
+                        </select>
+
+                        <input type="number" id="Empleado" name="idProfesional" placeholder="Identificación Empleado"
+                            inputmode="numeric" required>
+
+                    </div>
+
+                    <div class="box-2">
+                        <select id="paciente" name="paciente" required>
+                            <option value="" disabled selected>Seleccionar Paciente</option>
+                            <th:block th:each="paciente : ${pacientes}">
+                                <option th:value="${paciente.identificacionP}"
+                                    th:text="${paciente.nombreP} + ' ' + ${paciente.apellidoP}"></option>
+                            </th:block>
+                        </select>
+
+                        <input type="number" id="Paciente" name="identificacionP" placeholder="Identificación Paciente"
+                            inputmode="numeric" required>
+
+                    </div>
+
+                    <div class="box-3">
+                        <input type="text" id="direccion" placeholder="Dirección" required>
+
+                        <select id="servicio" name="servicio" required>
+                            <option value="">Tipo de servicio</option>
+                            <option value="200">Enfermeria a Domicilio</option>
+                            <option value="201">Terapia Respiratoria</option>
+                            <option value="202">Fisioterapia</option>
+                            <option value="203">Inyectologia</option>
+                            <option value="204">Cuidador</option>
+                        </select>
+                    </div>
+
+                    <div class="box-3">
+                        <input type="datetime-local" id="inicio_fh" name="inicio_fh" placeholder="Horario" required onchange="actualizarFechaFin()">
+
+                        <input type="datetime-local" id="fin_fh" name="fin_fh" placeholder="Horario" required readonly>
+                    </div>
+
+                    <div class="box-4">
+                        <select id="horario" name="horario" required onchange="actualizarFechaFin()">
+                            <option value="">Tipo de Turno</option>
+                            <option value="500">8 Horas</option>
+                            <option value="501">12 Horas</option>
+                            <option value="502">24 Horas</option>
+                            <option value="503">48 Horas</option>
+                        </select>
+                    </div>
+
+                    <div class="btn">
+                        <div class="botonC">
+                            <button type="button" id="btnCancelar" class="cancelar">
+                                <i class="fa-solid fa-calendar-xmark" style="font-size: 30px;"></i>
+                            </button>
+                        </div>
+
+                        <div class="botonA">
+                            <button type="submit" name="submit" class="asignar">
+                                <i class="fa-solid fa-calendar-plus" style="font-size: 30px;"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+    <script th:inline="javascript">
+        //despliegue de listas
+        let dropdowns = document.querySelectorAll('.list__item');
+
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('click', () => {
+                let submenu = dropdown.querySelector('.list__show');
+                if (submenu !== null) {
+                    if (submenu.style.display === "none" || submenu.style.display === "") {
+                        submenu.style.display = "block";
+                    } else {
+                        submenu.style.display = "none";
+                    }
+                }
+            })
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+        var agendaExitosa = '[[${agendaExitosa}]]' === 'true'; 
+        if (agendaExitosa) {
+            Swal.fire({
+                title: '¡Cita exitosa!',
+                text: 'Ha sido agendada con éxito.',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        }
+    });
+    </script>
+</body>
+
+</html>

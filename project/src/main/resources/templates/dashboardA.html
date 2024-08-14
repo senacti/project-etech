@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <script src="https://kit.fontawesome.com/95789fc486.js" crossorigin="anonymous"></script>
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo"><img src="/img/dashboardA/estetoscopio.png" alt="logo"></div>
+
+        <ul class="menu">
+
+            <li class="active">
+                <a href="#">
+                    <i class="fa-solid fa-house-user"></i>
+                    <span>Inicio</span>
+                </a>
+            </li>
+
+            <li class="list__item">
+                <div class="list__button list__button--click">
+                    <i class="fas fa-user"></i>
+                    <span>Perfil</span>
+                    <i class="fa-solid fa-chevron-right list__arrow"></i>
+                </div>
+                <ul class="list__show">
+                    <li class="list__inside">
+                        <a href="../Dashboard_Empleado/perfil_emp.html" class="nav__link nav__link--inside"> Empleado</a>
+                    </li>
+                    <li class="list__inside">
+                        <a href="../Dashboard_Paciente/perfil_paciente.html" class="nav__link nav__link--inside"> Paciente</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="/AgendaAdmin">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Agenda</span>
+                </a>
+            </li>
+
+
+            <li class="list__item">
+                <div class="list__button list__button--click">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Reporte</span>
+                    <i class="fa-solid fa-chevron-right list__arrow"></i>
+                </div>
+                <ul class="list__show">
+                    <li class="list__inside">
+                        <a href="/reporteAgenda" class="nav__link nav__link--inside">Agenda</a>
+                    </li>
+                    <li class="list__inside">
+                        <a href="#" class="nav__link nav__link--inside">Enfermeria</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="/registro">
+                    <i class="fa-solid fa-hospital-user"></i>
+                    <span>Registro</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="../../Error 500/Error500.html">
+                    <i class="fas fa-cog"></i>
+                    <span>Ajustes</span>
+                </a>
+            </li>
+
+            <li class="logout">
+                <a href="/logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Salir</span>
+                </a>
+            </li>            
+
+    </div>
+
+
+    <div class="main-content">
+        <div class="header--wrapper">
+            <div class="header-title">
+                <span>Bienvenido</span>
+                <h2><span th:text="${nombreAdmin}">Nombre y Apellido Administrador</span></h2>
+            </div>
+
+            <div class="user--info">
+                <div class="searh--box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Buscar">
+                </div>
+                <img src="/img/dashboardA/fotoperfil.png">
+            </div>
+        </div>
+        <!-- card -->
+        <div class="info--container">
+            <h3 class="main--title">Reportes del día</h3>
+            <div class="card--wrapper">
+                <div class="info--card light-red">
+                    <div class="card--header">
+                        <div class="amount">
+                            <span class="tittle">Agendamientos del dia </span>
+                            <span class="amount-value">Número de citas</span>
+                        </div>
+                        <i class="fa-regular fa-calendar icon"></i>
+                    </div>
+                    <span class="card-detail" th:text="'Agenda de hoy: ' + ${conteoDiarioAgenda}">Conteo de la agenda de hoy.</span>
+                </div>
+
+                <div class="info--card light-green">
+                    <div class="card--header">
+                        <div class="amount">
+                            <span class="tittle">Reportes del dia</span>
+                            <span class="amount-value">...</span>
+                        </div>
+                        <i class="fas fa-list icon dark-purple"></i>
+                    </div>
+                    <span class="card-detail">Datos...</span>
+                </div>
+
+                <div class="info--card light-purple">
+                    <div class="card--header">
+                        <div class="amount">
+                            <span class="tittle">Solicitudes</span>
+                            <span class="amount-value">...</span>
+                        </div>
+                        <a href="/registro">
+                            <i class="fas fa-users icon dark-green"></i>
+                        </a>
+                    </div>
+                    <span class="card-detail" th:text="'Solicitudes: ' + ${conteoIngresosHoy}">Conteo de ingresos de hoy.</span>
+                </div>
+
+                <div class="info--card light-blue">
+                    <div class="card--header">
+                        <div class="amount">
+                            <span class="tittle">Evidencias del día </span>
+                            <span class="amount-value">Rol</span>
+                        </div>
+                        <i class="fa-solid fa-check icon dark-blue"></i>
+                    </div>
+                    <span class="card-detail">Datos...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let dropdowns = document.querySelectorAll('.list__item');
+
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('click', () => {
+                let submenu = dropdown.querySelector('.list__show');
+                if (submenu !== null) {
+                    if (submenu.style.display === "none" || submenu.style.display === "") {
+                        submenu.style.display = "block";
+                    } else {
+                        submenu.style.display = "none";
+                    }
+                }
+            })
+        });
+    </script>
+</body>
+
+</html>

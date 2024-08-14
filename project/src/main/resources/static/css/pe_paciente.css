@@ -1,0 +1,287 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+    --rojo: #aa1f23;
+    --azul: #1d2d62;
+    --azul-claro: #0a7abf;
+    --blanco: #f2f2f2;
+    --negro: #0d0d0d;
+}  
+
+body{
+    display: flex;
+}
+
+
+/* * Estilo barra de menu */
+.sidebar{
+    position: sticky;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+    height: 100vh;
+    padding: 0 1.7rem;
+    color: #fff;
+    overflow: hidden;
+    background: #1d2d62
+  }
+  
+  .logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .logo img{
+    height: 120px;
+    padding: 16px;
+  }
+.menu {
+    height: 88%;
+    position: relative;
+    list-style: none;
+    padding: 0;
+}
+
+.menu li {
+    padding: 1rem;
+    margin: 8px 0;
+    border-radius: 8px;
+    transition: all 0.5s ease-in-out;
+}
+
+.menu li:hover,
+.active {
+    background: #e0e0e058;
+}
+
+.menu a {
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.menu a span {
+    overflow: hidden;
+}
+
+.menu a i {
+    font-size: 1.2rem;
+}
+
+.logout {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+/* Perfil del Empleado */
+
+.profile-emp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    background-color: var(--blanco);
+    border-radius: 4.5%;
+}
+
+.profile-emp img {
+    width: 80px;
+    height: 90px;
+    text-align: center;
+    padding-bottom: 4px;
+}
+
+.profile-emp .emp-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 4px;
+}
+
+.profile-emp .emp-info {
+    font-size: 12px;
+    color: black;
+}
+
+/* *Nota de Enfermeria */
+
+.main-content{
+    position: relative;
+    background: #ebe9e9;
+    width: 100%;
+    padding: 1rem;
+}
+
+.header--wrapper img{
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.header--wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px 2rem;
+    margin-bottom: 1rem;
+}
+
+.header-title{
+    color: black
+}
+
+.header-details{
+    color: black
+}
+
+/* Perfil del Paciente */
+
+.c-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: calc(100vh - 80px);
+}
+
+.card-profile{
+    position: relative;
+    width: 300px;
+    height: 400px;
+}
+
+.card-profile .profile-port{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 5px 10px;
+    background: var(--azul);
+    background-position: center;
+    background-size: cover;
+}
+
+.card-profile .profile-port h6{
+    bottom: 10px;
+    left: 10px;
+    font-size: 25px;
+    color: #fff;
+}
+
+/* Paciente */
+
+.profile-port{
+    padding: 20px;
+}
+.head-subpa{
+    display: flex;
+    gap: 10px;
+    color: #fff;
+    font-size: 15px;
+}
+.title-pa{
+    padding: 5px 0;
+    border-bottom: 1px solid #fff;
+    font-size: 20px;
+    font-weight: 700;
+    color: black;
+}
+.content-pa{
+padding-left: 11px;
+font-size: 14px;
+}
+.list-pa li{
+    margin-bottom: 5px;
+}
+
+
+.card-profile .profile-info{
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    margin: auto;
+    padding: 15px;
+    background: var(--rojo);
+    z-index: 900;
+    box-shadow: 0 5px 10px #000;
+    transition: .5s;
+}
+
+.card-profile:hover .profile-info{
+left: 100%;
+}
+
+.profile-info .head-profile{
+    padding: 5px 0;
+    border-bottom: 1px solid #fff;
+}
+
+.profile-info .head-profile .title-profile{
+font-size: 20px;
+font-weight: 700;
+color: black;
+}
+
+.profile-info .head-profile{
+    display: flex;
+    gap: 10px;
+}
+
+.profile-info .head-profile{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.profile-info .head-profile{
+    color: #fff;
+    font-size: 15px;
+}
+
+.profile-info .head-profile{
+    font-size: 13px;
+}
+
+.profile-info .content-profile .list{
+    padding: 10px 15px;
+}
+
+.profile-info .content-profile .list li{
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.profile-info .action .btn{
+    padding: 10px;
+    color: #fff;
+    width: 100%;
+    text-decoration: none;
+    text-align: center;
+    background: var(--azul);
+    display: block;
+}

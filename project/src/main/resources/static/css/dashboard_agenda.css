@@ -1,0 +1,399 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+:root {
+    --rojo: #aa1f23;
+    --azul: #1d2d62;
+    --azul-claro: #0a7abf;
+    --blanco: #f2f2f2;
+    --negro: #0d0d0d;
+  }
+
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    display: flex;
+}
+
+/* * Estilo barra de menu */
+.sidebar{
+    position: sticky;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+    height: 100vh;
+    padding: 0 1.7rem;
+    color: #fff;
+    overflow: hidden;
+    background: #1d2d62
+}
+
+.logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo img{
+  height: 120px;
+  padding: 16px;
+}
+
+.menu{
+  max-height: 100vh;
+  overflow-y: auto;
+  height: 88%;
+  position: relative;
+  list-style: none;
+  padding: 0;
+}
+.menu li {
+  padding: 1rem;
+  margin: 8px 0;
+  border-radius: 8px;
+  transition: all 0.5s ease-in-out;
+}
+.menu li:hover, 
+.active_a{
+    background: #e0e0e058;
+}
+.menu a{
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+.menu a span{
+    overflow: hidden;
+}
+.menu a i{
+    font-size: 1.2rem;
+}
+
+.logout{
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+
+.nav__link--inside{
+  border-radius: 6px;
+  padding-left: 20px; 
+}
+
+.list__show {
+  display: none;
+  max-width: 100%;
+}
+
+.list__show li {
+  list-style: none;
+}
+
+.list__show.visible {
+  display: block;
+}
+
+/* Movimiento flechas */
+.list__button {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  width: 70%;
+  margin: 0 auto;
+}
+.arrow .list__arrow{
+  transform: rotate(90deg);
+}
+
+.list__arrow{
+  transform: rotate(0deg);
+  transition: transform .3s;
+}
+
+::-webkit-scrollbar {
+  width: 10px;  
+}
+::-webkit-scrollbar-thumb {
+  background: gray; 
+  border-radius: 10px; 
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;  
+  border-radius: 10px;  
+}
+
+/* Contenido de la izquierda */
+.main-content{
+    position: relative;
+    background: #ebe9e9;
+    width: 100%;
+    padding: 1rem;
+}
+
+.header--wrapper img{
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.header--wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px 2rem;
+    margin-bottom: 1rem;
+}
+
+.header-title{
+    color: black
+}
+
+.header-details{
+    color: black
+}
+
+
+.user--info{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.searh--box{
+    background: rgb(237, 237, 237);
+    border-radius: 15px;
+    color: #1d2d62;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 12px;
+}
+.searh--box input{
+    background: transparent;
+    padding: 10px;
+}
+.searh--box i{
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.5s ease-out;
+}
+.searh--box i:hover{
+    transform: scale(1.2);
+}
+
+/* Agenda */
+
+.calendar-container{
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.wrapper{
+    width: 450px;
+    background: #1d2d62;
+    border-radius: 10px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    width: 400px;
+    height: 520px;
+    border-radius: 5%;
+  
+  }
+  .wrapper header{
+    display: flex;
+    align-items: center;
+    padding: 25px 30px 10px;
+    justify-content: space-between;
+  }
+  header .icons{
+    display: flex;
+  }
+  
+  /* Flechitas */
+  header .icons span{
+    height: 38px;
+    width: 38px;
+    margin: 0 1px;
+    cursor: pointer;
+    color: #fff;
+    text-align: center;
+    line-height: 38px;
+    font-size: 1.9rem;
+    user-select: none;
+    border-radius: 50%;
+  }
+  .icons span:last-child{
+    margin-right: -10px;
+  }
+  header .icons span:hover{
+    background: #f2f2f2;
+  }
+  header .current-date{
+    font-size: 1.45rem;
+    font-weight: 500;
+  }
+
+  .calendar{
+    padding: 20px;
+  }
+  .calendar ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    text-align: center;
+  }
+  .calendar .days{
+    margin-bottom: 20px;
+  }
+  
+  /*numeros*/
+  .calendar li{
+    color: #fff;
+    width: calc(100% / 7);
+    font-size: 1.07rem;
+  }
+  .calendar .weeks li{
+    font-weight: 500;
+    cursor: default;
+  }
+  .calendar .days li{
+    z-index: 1;
+    cursor: pointer;
+    position: relative;
+    margin-top: 30px;
+  }
+  /*Numeros más claros*/
+  .days li.inactive{
+    color: #aaa;
+  }
+  
+  .days li::before{
+    position: absolute;
+    content: "";
+    left: 50%;
+    top: 50%;
+    height: 40px;
+    width: 40px;
+    z-index: -1;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /*dia con color*/
+  .days li.active::before{
+    background: #9B59B6;
+  }
+  
+  .days li:not(.active):hover::before{
+    background: #aaa;
+  }
+  
+  /*Datos de agendamiento*/
+  .datos{
+    background-color: #2b4391;
+    border-radius: 6%;
+    width: 420px;
+    height: 520px;
+    text-align: center;
+    margin: 20px 0 12px 0;
+  }
+  
+  .box-1,
+  .box-2,
+  .box-3,
+  .box-4{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+  }
+  
+  /* Estilos para ajustar el tamaño de los input y select */
+  .box-1 select, .box-1 input[type="number"], 
+  .box-2 select, .box-2 input[type="number"], 
+  .box-3 select, .box-3 input[type="text"], .box-3 input[type="datetime-local"]{
+      width: 100%;
+      padding: 10px; 
+      margin-left: 7px; 
+      margin-right: 7px;
+      box-sizing: border-box;
+      border-radius: 7px;
+  }
+
+  .box-4 select{
+    width: 50%;
+    padding: 10px;
+    margin-left: 7px; 
+    margin-right: 7px;
+    box-sizing: border-box;
+    border-radius: 7px;
+  }
+
+  h2{
+    margin-top: 10px;
+  }
+
+
+  input[type="number"]::-webkit-inner-spin-button, 
+  input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
+  
+  input[type="number"] {
+      -moz-appearance: textfield;
+      appearance: none; 
+  } 
+  
+  
+  .btn{
+  padding: 20px 5px 0px 5px;
+  display: flex;
+  justify-content: space-evenly;    
+  align-items: center;
+  }
+
+  .botonA{
+    padding-right: 100px;
+  }
+  .botonC{
+    padding-left: 100px;
+  }
+
+  
+  .asignar,
+  .eliminar{
+    cursor: pointer;
+  }
+
+  .cancelar, 
+  .asignar{
+    cursor: pointer;
+    font-family: sans-serif;
+    background-color: #2b4391;
+    border-radius: 5px;
+    padding: 2%;
+    color: #f2f2f2;
+  }
+
+img{
+    width: 120px;
+    height: 110px;
+    text-align: center;
+}

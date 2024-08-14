@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registro Paciente</title>
+    <link rel="stylesheet" href="/css/formulario_paciente2.css">
+</head>
+<body>
+    <section class="container">
+        <header>Historia Medica del Paciente</header>
+
+        <form action="/pacientes2" method="post" enctype="multipart/form-data" class="form">
+            <input type="hidden" name="identificacionP" th:value="${paciente.identificacionP}" />
+
+            <div class="column">
+                <div class="input-box">
+                    <label>EPS</label>
+                    <div class="select-box">
+                        <select name="idEps" required>
+                            <option hidden value="">Selecciona tu eps</option>
+                            <option value="1">Coosalud</option>
+                            <option value="2">Nueva EPS</option>
+                            <option value="3">Mutual Ser</option>
+                            <option value="4">Aliansalud EPS</option>
+                            <option value="5">Salud Total</option>
+                            <option value="6">EPS Sanitas</option>
+                            <option value="7">EPS SURA</option>
+                            <option value="8">Famisanar</option>
+                            <option value="9">Salud Mia</option>
+                            <option value="10">Compensar</option>
+                            <option value="11">Asmet Salud</option>
+                            <option value="12">Capital Salud EPS</option>
+                            <option value="13">Salud Bolivar EPS</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-box">
+                    <label>Grupo Sanguíneo</label>
+                    <div class="select-box">
+                        <select name="rhP" required>
+                            <option hidden value="">Elige tu grupo</option>
+                            <option value="A+">A+</option>
+                            <option value="O+">O+</option>
+                            <option value="B+">B+</option>
+                            <option value="AB+">AB+</option>
+                            <option value="A-">A-</option>
+                            <option value="O-">O-</option>
+                            <option value="B-">B-</option>
+                            <option value="AB-">AB-</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="input-box">
+                    <label>Pañal</label>
+                    <div class="select-box">
+                        <select name="panal" required>
+                            <option hidden value="">Opciones</option>
+                            <option value="Si">Si</option>
+                            <option value="No">No</option>        
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-box">
+                    <label>Marcapaso</label>
+                    <div class="select-box">
+                        <select name="marcaPasos" required>
+                            <option hidden value="">Opciones</option>
+                            <option value="Si">Si</option>
+                            <option value="No">No</option>        
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-box">
+                    <label>Audifonos</label>
+                    <div class="select-box">
+                        <select name="audifonos" required>
+                            <option hidden value="">Opciones</option>
+                            <option value="Si">Si</option>
+                            <option value="No">No</option>        
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-box">
+                    <label>Protesis Dental</label>
+                    <div class="select-box">
+                        <select name="protesisDental" required>
+                            <option hidden value="">Opciones</option>
+                            <option value="Si">Si</option>
+                            <option value="No">No</option>        
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-box">
+                <label>Alergia</label>
+                <input type="text" name="alergia" placeholder="Especifica tu alergia" pattern="^[a-zA-Z]+$"
+                title="No se admiten espacios en blancos ni caracteres especiales" required>
+            </div>
+
+            <div class="column">
+                <div class="input-box">
+                    <label>Nivel de dependencia</label>
+                    <div class="select-box">
+                        <select name="nivelAutonomia" required>
+                            <option hidden value="">Elige una opción</option>
+                            <option value="Completa">Completa</option>
+                            <option value="Limitada">Limitada</option>
+                            <option value="Nula">Nula</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-box">
+                    <label>Dependencia al comer</label>
+                    <div class="select-box">
+                        <select name="nivelAlimentacion" required>
+                            <option hidden value="">Elige una opción</option>
+                            <option value="Independiente">Independiente</option>
+                            <option value="Necesito ayuda">Necesito ayuda</option>
+                            <option value="Dependiente">Dependiente</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-box">
+                    <label>Dependencia al baño</label>
+                    <div class="select-box">
+                        <select name="nivelBano" required>
+                            <option hidden value="">Elige una opción</option>
+                            <option value="Independiente">Independiente</option>
+                            <option value="Necesito ayuda">Necesito ayuda</option>
+                            <option value="Dependiente">Dependiente</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="input-box">
+                    <label>Tipo de servicio</label>
+                    <div class="select-box">
+                        <select name="servicio" required>
+                            <option hidden value="">Elige tu servicio</option>
+                            <option value="Enfermeria Domiciliaria">Enfermeria a Domicilio</option>
+                            <option value="Terapia Respiratoria">Terapia Respiratoria</option>
+                            <option value="Fisioterapia">Fisioterapia</option>
+                            <option value="Inyectologia">Inyectologia</option>
+                            <option value="Cuidador">Cuidadora</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-box-med">
+                    <br>
+                    <label>Antecedentes médicos</label>
+                    <input type="file" name="antMed">
+                </div>
+            </div>
+
+            <button>Enviar</button>
+        </form>
+
+        <br>
+        <div class="steps">
+            <div class="step"></div>
+            <div class="step active"></div>
+        </div>
+    </section>
+</body>
+</html>

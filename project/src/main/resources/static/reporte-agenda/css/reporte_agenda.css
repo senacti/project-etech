@@ -1,0 +1,308 @@
+:root {
+    --rojo: #aa1f23;
+    --azul: #1d2d62;
+    --azul-claro: #0a7abf;
+    --blanco: #f2f2f2;
+    --negro: #0d0d0d;
+  }
+
+*{
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    background: #eee;
+}
+
+/* * Estilo barra de menu */
+.sidebar{
+    font-family: Arial, Helvetica, sans-serif;
+    position: sticky;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+    height: 100vh;
+    padding: 0 1.7rem;
+    color: #fff;
+    overflow: hidden;
+    background: #1d2d62
+}
+
+.logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo img{
+  height: 120px;
+  padding: 16px;
+}
+
+.menu{
+  max-height: 100vh;
+  overflow-y: auto;
+  height: 88%;
+  position: relative;
+  list-style: none;
+  padding: 0;
+}
+.menu li {
+  padding: 1rem;
+  margin: 8px 0;
+  border-radius: 8px;
+  transition: all 0.5s ease-in-out;
+}
+.menu li:hover, 
+.active_a{
+    background: #e0e0e058;
+}
+.menu a{
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+.menu a span{
+    overflow: hidden;
+}
+.menu a i{
+    font-size: 1.2rem;
+}
+
+.logout{
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+
+.nav__link--inside{
+  border-radius: 6px;
+  padding-left: 20px; 
+}
+
+.list__show {
+  display: none;
+  max-width: 100%;
+}
+
+.list__show li {
+  list-style: none;
+}
+
+.list__show.visible {
+  display: block;
+}
+
+/* Movimiento flechas */
+.list__button {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  width: 70%;
+  margin: 0 auto;
+}
+.arrow .list__arrow{
+  transform: rotate(90deg);
+}
+
+.list__arrow{
+  transform: rotate(0deg);
+  transition: transform .3s;
+}
+
+::-webkit-scrollbar {
+  width: 10px;  
+}
+::-webkit-scrollbar-thumb {
+  background: gray; 
+  border-radius: 10px; 
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;  
+  border-radius: 10px;  
+}
+
+/* Contenido de la izquierda */
+.main-content{
+    position: relative;
+    background: #ebe9e9;
+    width: 100%;
+    padding: 1rem;
+}
+
+.header--wrapper img{
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.header--wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px 2rem;
+    margin-bottom: 1rem;
+}
+
+.header-title{
+    color: black
+}
+
+.header-details{
+    color: black
+}
+
+.user--info{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.bar-t{
+  color: white;
+}
+
+/* Reporte */
+
+h1,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+ol,
+ul,
+li,
+img,
+span,
+input,
+form,
+label,
+.btn,
+.navbar,
+.navbar-brand {
+    margin: 0;
+    padding: 0;
+}
+
+h1::selection,
+h3::selection,
+h4::selection,
+h5::selection,
+h6::selection,
+p::selection,
+a::selection,
+ol::selection,
+ul::selection,
+li::selection,
+img::selection,
+span::selection,
+input::selection,
+form::selection,
+label::selection,
+.btn::selection,
+.navbar::selection,
+.navbar-brand::selection {
+    color: #fff;
+    background: #187fcc;
+    text-shadow: 1px 1px 1px #333;
+}
+
+ol,
+ul,
+li {
+    list-style-type: none;
+}
+
+a,
+a:hover {
+    text-decoration: none;
+    color: #333;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+}
+
+h1 {
+    font-size: 50px;
+    color: #111;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 110px;
+    color: #111;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 35px;
+    color: #111;
+    font-weight: 600;
+}
+
+h4 {
+    font-size: 30px;
+    color: #111;
+    font-weight: 600;
+}
+
+h5 {
+    font-size: 25px;
+    color: #111;
+    font-weight: 600;
+}
+
+h6 {
+    font-size: 18px;
+    color: #111;
+}
+
+p {
+    font-size: 14px;
+    color: #111;
+}
+
+.ptb-50 {
+    padding: 50px 0px;
+}
+
+.mtb-15 {
+    margin: 15px 0;
+}
+
+.data_table{
+    background: #fff;
+    padding: 15px;
+    box-shadow: 1px 3px 5px #aaa;
+    border-radius: 5px;
+}
+
+.data_table .btn{
+    padding: 5px 10px;
+    margin: 10px 3px 10px 0;
+}
+
+.option{
+    text-align: center;
+}
+i{
+    cursor: pointer;
+    font-size: 20px;
+    padding: 0 2px 0 2px;
+}
+

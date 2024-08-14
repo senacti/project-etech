@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/login.css">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<title>Login</title>
+</head>
+
+<body>
+	<div class="container" id="container">
+		<div class="form-container admi-container">
+			<form action="/loginA" method="post" target="_self">
+				<!-- TODO: Inicio Sesión Administrador -->
+				<h1>Administrador</h1>
+				<span>Ingresa tu cuenta</span>
+				<input type="text" name="identificacionA" inputmode="numeric" pattern="[0-9]*" placeholder="Documento"
+					required autofocus />
+				<input type="email" name="emailA" placeholder="Email" required />
+				<input type="password" name="passwordA" placeholder="Contraseña" required
+					pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{7,15}$"
+					title="La contraseña debe contener al menos una mayúscula, una minúscula, un número y tener una longitud de 7 a 15 caracteres" />
+				<input type="hidden" name="idRolA" value="1" />
+				<button>Iniciar Sesión</button>
+			</form>
+		</div>
+
+		<div class="form-container emp-container">
+			<form action="/loginE" method="post" target="_self">
+				<!-- TODO: Inicio Sesión empleado -->
+				<h1>Empleado</h1>
+				<span>Ingresa tu cuenta</span>
+				<input type="text" name="identificacionE" inputmode="numeric" pattern="[0-9]*" placeholder="Documento"
+					required autofocus />
+				<input type="email" name="emailE" placeholder="Email" required />
+				<input type="password" name="passwordE" placeholder="Contraseña" required
+					pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{7,15}$"
+					title="La contraseña debe contener al menos una mayúscula, una minúscula, un número y tener una longitud de 7 a 15 caracteres" />
+				<input type="hidden" name="idRolE" value="2" />
+				<button>Iniciar Sesión</button>
+			</form>
+
+		</div>
+
+		<div class="overlay-container">
+			<div class="overlay">
+				<div class="overlay-panel overlay-left">
+
+					<!-- TODO: Inicio Sesión Administrador -->
+					<h1>¡Buen día!</h1>
+					<p>Inicia sesión con tu información personal y comienza tu día</p>
+					<button class="ghost" id="Empleado">Empleado</button>
+				</div>
+				<div class="overlay-panel overlay-right">
+
+					<!-- TODO: Inicio Sesión Empleado -->
+					<h1>¡Buen día!</h1>
+					<p>Introduce tus datos personales y comienza tu día con nosotros</p>
+					<button class="ghost" id="Administrador">Administrador</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script th:inline="javascript">
+		const AdministradorButton = document.getElementById('Administrador');
+		const EmpleadoButton = document.getElementById('Empleado');
+		const container = document.getElementById('container');
+
+		AdministradorButton.addEventListener('click', () => {
+			container.classList.add("right-panel-active");
+		});
+
+		EmpleadoButton.addEventListener('click', () => {
+			container.classList.remove("right-panel-active");
+		});
+
+		window.addEventListener('DOMContentLoaded', (event) => {
+			// Intenta obtener el mensaje de error del modelo Thymeleaf
+			var loginError = '[[${loginError}]]' || 'null';
+
+			// Verifica si loginError tiene un valor válido y no es 'null'
+			if (loginError && loginError !== 'null') {
+				Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					text: loginError,
+					footer: '<a href="/loginA">Intentar nuevamente</a>'
+				});
+			}
+		});
+	</script>
+
+
+</body>
+
+</html>

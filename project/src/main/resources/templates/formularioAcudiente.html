@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Formulario Paciente</title>
+    <link rel="stylesheet" href="/css/formulario_acudiente.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <section class="container">
+        <header>Acudiente</header>
+        <form action="/acudientes" method="post" onsubmit="return validarFormulario()" id="formAcudiente" class="form">            
+            
+            <input hidden type="number" name="identificacionP" th:value="${identificacionP}" />
+
+            <div class="column">
+                <div class="input-box">
+                    <label>Nombre Completo</label>
+                    <input type="text" placeholder="Ingresa tu nombre completo" name="nombreA" pattern="^[a-zA-Z]+$"
+                    title="No se admiten espacios en blancos ni caracteres especiales" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Apellido completo</label>
+                    <input type="text" placeholder="Ingresa tu apellido" name="apellidoA" pattern="^[a-zA-Z]+$"
+                    title="No se admiten espacios en blancos ni caracteres especiales" required>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="input-box">
+                    <label>Identificación</label>
+                    <input type="number" name="identificacionC" placeholder="Ingresa tu identificación"
+                    inputmode="numeric" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Teléfono</label>
+                    <input  type="text" placeholder="Ingresa tu teléfono" name="telefonoA" inputmode="numeric"
+                        pattern="[0-9]{10}" title="Por favor, ingresa un número de teléfono de 10 dígitos" required>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="input-box">
+                    <label>Email</label>
+                    <input type="email" placeholder="Ingresa tu email" name="correoA" required>
+                </div>
+            </div>
+
+            <div class="input-box">
+                <div class="input-box">
+                    <label>Dirección</label>
+                    <input type="text" placeholder="Ingresa tu dirección" name="direccionA" required>
+                </div>
+
+                <div class="column">
+                    <div class="input-box">
+                        <label>Ciudad</label>
+                        <div class="select-box">
+                            <select id="lugar" name="ciudadA" required>
+                                <option hidden value="">Ciudad</option>
+                                <option value="Bogotá">Bogotá</option>
+                                <option value="Medellín">Medellín</option>
+                                <option value="Barranquilla">Barranquilla</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-box">
+                        <label>Parentesco</label>
+                        <div class="select-box">
+                            <select id="parentesco" name="parentesco" required>
+                                <option hidden value="">Parentesco</option>
+                                <option value="100">Madre</option>
+                                <option value="101">Padre</option>
+                                <option value="102">Hermano/a</option>
+                                <option value="103">Abuelo/a</option>
+                                <option value="104">Cónyuge</option>
+                                <option value="105">Hijo/a</option>
+                                <option value="106">Tío/a</option>
+                            </select>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+
+    <script>
+        function validarEmail() {
+            var correo = document.getElementsByName("correoA")[0].value;
+            var dominios = ["gmail.com", "hotmail.com", "yahoo.com", "outlook.com"];
+            var dominioValido = false;
+
+            for (var i = 0; i < dominios.length; i++) {
+                if (correo.endsWith(`@${dominios[i]}`)) {
+                    dominioValido = true;
+                    break;
+                }
+            }
+
+            if (!dominioValido) {
+                alert("El correo electrónico debe ser de Gmail, Hotmail, Yahoo o Outlook.");
+            }
+
+            return dominioValido;
+        }
+
+        function validarFormulario() {
+            if (!validarEmail()) {
+                return false; 
+            }
+
+            Swal.fire({
+                title: '¡Registro exitoso!',
+                text: 'Ha sido registrado con éxito.',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('formAcudiente').submit();
+                }
+            });
+
+            return false; 
+        }
+    </script>
+</body>
+</html>

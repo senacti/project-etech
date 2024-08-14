@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nota de Enfermería</title>
+    <link rel="stylesheet" href="/css/ne_paciente.css">
+    <script src="https://kit.fontawesome.com/95789fc486.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo"><img src="/img/ne_paciente/estetoscopio.png" alt="logo"></div>
+        <ul class="menu">
+
+            <div class="profile-emp">
+                <img src="/img/dashboardE/nurse.png" alt="Foto de perfil del paciente" class="img-profile">
+                <h2 class="emp-info" th:text="${perfil[2]}">ID Empleado</h2>
+            </div>
+
+            <li class="#">
+                <a href="/dashboardE">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Agenda</span>
+                </a>
+            </li>
+
+            <li class="#">
+                <a href="/perfilPaciente">
+                    <i class="fa-solid fa-bed-pulse"></i>
+                    <span>Paciente</span>
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="#">
+                    <i class="fa-solid fa-book-medical"></i>
+                    <span>Nota de Enfermería</span>
+                </a>
+            </li>
+
+            <li class="logout">
+                <a href="/logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Salir</span>
+                </a>
+            </li>    
+
+
+        </ul>
+    </div>
+
+    <div class="main-content">
+
+        <div class="header--wrapper">
+            <div class="header-title">
+                <span>Nota de Enfermería</span>
+                <h2 th:text="${perfil[0]} + ' ' + ${perfil[1]}"> </h2>
+            </div>
+
+            <div class="header-details">
+                <span>Fecha de la nota:</span>
+                <h2 id="fechaNota"></h2>
+            </div>
+
+            <div class="header-details">
+                <span>Hora de la nota:</span>
+                <h2 id="horaNota"></h2>
+            </div>
+
+        </div>
+
+        <!-- Signo vital -->
+        <form action="/guardarNota" method="post" enctype="multipart/form-data">
+            <div class="content-vital">
+                <div class="cards">
+                    <div class="card">
+                        <div class="box">
+                            <h1>FC</h1>
+                            <input name="fcBpm" type="text" class="vital-input" placeholder="Frec.cardíaca" inputmode="none" pattern="[0-9]*" required>
+                            <h3>Lpm</h3>
+                        </div>
+
+                        <div class="icon-case">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="box">
+                            <h1>PA</h1>
+                            <input name="paMmhg" type="text" class="vital-input" placeholder="Presión arterial" inputmode="none" pattern="[0-9]*" required>
+                            <h3>mm/Hg</h3>
+                        </div>
+
+                        <div class="icon-case">
+                            <i class="fa-solid fa-stethoscope"></i>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="box">
+                            <h1>T</h1>
+                            <input name="tempC" type="text" class="vital-input" placeholder="Temperatura" inputmode="none" pattern="[0-9]*" required>
+                            <h3>C°</h3>
+                        </div>
+
+                        <div class="icon-case">
+                            <i class="fa-solid fa-thermometer"></i>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="box">
+                            <h1>SpO2</h1>
+                            <input name="spo2Pct" type="text" class="vital-input" placeholder="Oxígeno en la sangre" inputmode="none" pattern="[0-9]*" required>
+                            <h3>%</h3>
+                        </div>
+                        <div class="icon-case">
+                            <b>O<sub>2</sub></b>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="box">
+                            <h1>FR</h1>
+                            <input name="frRpm" type="text" class="vital-input" placeholder="Frec.Respiratoria" inputmode="none" pattern="[0-9]*" required>
+                            <h3>Rpm</h3>
+                        </div>
+                        <div class="icon-case">
+                            <i class="fa-solid fa-lungs"></i>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="box">
+                            <h1>Glu</h1>
+                            <input name="gluMgdl" type="text" class="vital-input" placeholder="Glucosa" inputmode="none" pattern="[0-9]*" required>
+                            <h3>mg/dL</h3>
+                        </div>
+                        <div class="icon-case">
+                            <i class="fa-solid fa-droplet"></i>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="note-nurse">
+
+                    <div class="note">
+                        <div class="title-note">
+                            <h2>Informe de Enfermería</h2>
+                        </div>
+                        <textarea name="notaEnfer" class="note-input" placeholder="Ingrese el informe de enfermería aquí..." rows="10"></textarea>
+                    </div>
+
+                    <div class="activity">
+                        <div class="title-note">
+                            <h2>Actividad</h2>
+                        </div>
+                        <textarea name="actividad" class="note-input" placeholder="Ingrese el informe de actividad aquí..." rows="10"></textarea>
+                    </div>
+
+                </div>
+
+                <div class="note-nurse">
+
+                    <div class="medicine">
+                        <div class="title-note">
+                            <h2>Medicinas</h2>
+                        </div>
+                        <table id="medicinesTable">
+                            <tr>
+                                <th>Medicamento</th>
+                                <!-- <th>Dosis [mg]</th> -->
+                                <th>+</th>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="medicamento" placeholder="Nombre del medicamento"></td>
+                                <!-- <td><input type="text" name="dosis[]" placeholder="Dosis" inputmode="numeric"></td> -->
+                                <td><button type="button" onclick="agregarFila()">Agregar</button></td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                    <div class="image">
+                        <div class="title-note">
+                            <h2>Evidencia Fotográfica</h2>
+                        </div>
+                        <label for="imagenInput" class="custom-file-upload">
+                            <img id="imagenPreview" src="" alt="Vista previa de la imagen">
+                            <span class="file-icon">
+                                <i class="fa-solid fa-image"></i>
+                            </span>
+                        </label>
+                        <input name="evidFotografica" type="file" accept=".jpg, .jpeg, .png" id="imagenInput">
+                    </div>
+
+                </div>
+
+                <input type="hidden" name="identificacionP" th:value="${idPaciente}" />
+                <input type="hidden" name="idProfesional" th:value="${idEmpleado}" />
+
+                <div class="button-container">
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+</body>
+<script src="/js/ne_paciente.js"></script>
+<script th:inline="javascript">
+document.addEventListener("DOMContentLoaded", function() {
+    var notaEnviada = '[[${notaEnviada}]]' === 'true';
+    if (notaEnviada) {
+        Swal.fire({
+            title: 'Nota enviada',
+            text: 'La nota ha sido enviada correctamente.',
+            icon: 'success',
+            confirmButtonText: 'Ok'
+        });
+    }
+});
+</script>
+</html>

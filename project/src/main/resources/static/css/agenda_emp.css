@@ -1,0 +1,315 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+    --rojo: #aa1f23;
+    --azul: #1d2d62;
+    --azul-claro: #0a7abf;
+    --blanco: #f2f2f2;
+    --negro: #0d0d0d;
+}  
+
+body{
+    display: flex;
+}
+
+
+/* * Estilo barra de menu */
+.sidebar{
+  position: sticky;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 300px;
+  height: 100vh;
+  padding: 0 1.7rem;
+  color: #fff;
+  overflow: hidden;
+  background: #1d2d62
+}
+
+.logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo img{
+  height: 120px;
+  padding: 16px;
+}
+
+.menu {
+    height: 88%;
+    position: relative;
+    list-style: none;
+    padding: 0;
+}
+
+.menu li {
+    padding: 1rem;
+    margin: 8px 0;
+    border-radius: 8px;
+    transition: all 0.5s ease-in-out;
+}
+
+.menu li:hover,
+.active_a{
+    background: #e0e0e058;
+}
+
+.menu a {
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.menu a span {
+    overflow: hidden;
+}
+
+.menu a i {
+    font-size: 1.2rem;
+}
+
+.logout {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+/* Perfil del Empleado */
+
+.profile-emp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    background-color: var(--blanco);
+    border-radius: 4.5%;
+}
+
+.profile-emp .emp-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 4px;
+}
+
+.profile-emp .emp-info {
+    font-size: 12px;
+    color: black;
+}
+
+/* *Nota de Enfermeria */
+
+.main-content{
+    position: relative;
+    background: #ebe9e9;
+    width: 100%;
+    padding: 1rem;
+}
+
+.header--wrapper img{
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.header--wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px 2rem;
+    margin-bottom: 1rem;
+}
+
+.header-details{
+    color: black
+}
+
+/* Agenda */
+
+.calendar-container{
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.wrapper{
+    width: 450px;
+    background: #1d2d62;
+    border-radius: 10px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    width: 400px;
+    height: 520px;
+    border-radius: 5%;
+  
+  }
+  .wrapper header{
+    display: flex;
+    align-items: center;
+    padding: 25px 30px 10px;
+    justify-content: space-between;
+  }
+  header .icons{
+    display: flex;
+  }
+  
+  /* Flechitas */
+  header .icons span{
+    height: 38px;
+    width: 38px;
+    margin: 0 1px;
+    cursor: pointer;
+    color: #fff;
+    text-align: center;
+    line-height: 38px;
+    font-size: 1.9rem;
+    user-select: none;
+    border-radius: 50%;
+  }
+  .icons span:last-child{
+    margin-right: -10px;
+  }
+  header .icons span:hover{
+    background: #f2f2f2;
+  }
+  header .current-date{
+    font-size: 1.45rem;
+    font-weight: 500;
+  }
+
+  .calendar{
+    padding: 20px;
+  }
+  .calendar ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    text-align: center;
+  }
+  .calendar .days{
+    margin-bottom: 20px;
+  }
+  
+  /*numeros*/
+  .calendar li{
+    color: #fff;
+    width: calc(100% / 7);
+    font-size: 1.07rem;
+  }
+  .calendar .weeks li{
+    font-weight: 500;
+    cursor: default;
+  }
+  .calendar .days li{
+    z-index: 1;
+    cursor: pointer;
+    position: relative;
+    margin-top: 30px;
+  }
+  /*Numeros más claros*/
+  .days li.inactive{
+    color: #aaa;
+  }
+  
+  .days li::before{
+    position: absolute;
+    content: "";
+    left: 50%;
+    top: 50%;
+    height: 40px;
+    width: 40px;
+    z-index: -1;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /*dia con color*/
+  .days li.active::before{
+    background: #9B59B6;
+  }
+  
+  .days li:not(.active):hover::before{
+    background: #aaa;
+  }
+  
+  /*Datos de agendamiento*/
+  .datos{
+    background-color: #2b4391;
+    border-radius: 6%;
+    width: 420px;
+    height: 520px;
+    text-align: center;
+    margin: 20px 0 12px 0;
+  }
+  
+  .box-1, .box-2, .box-3, .box-4{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 45px;
+  }
+  
+  /* Estilos para ajustar el tamaño de los input y select */
+
+  .caja-blanca {
+    width: 100%;
+    color: black;
+    background-color: white;
+    padding: 10px;
+    margin-left: 7px; 
+    margin-right: 7px;
+    box-sizing: border-box;
+    border-radius: 7px;
+}
+
+.caja-blanca-2 {
+  width: 50%;
+  color: black;
+  background-color: white;
+  padding: 10px;
+  margin-left: 7px; 
+  margin-right: 7px;
+  box-sizing: border-box;
+  border-radius: 7px;
+}
+
+.inform-calendar{
+    font-weight: bold;
+}
+
+img{
+    width: 120px;
+    height: 110px;
+    text-align: center;
+}
+
+.img-profile{
+  width: 80px;
+  height: 90px;
+  text-align: center;
+  padding-bottom: 4px;
+}
+
+/* Añadir este estilo para los días agendados */
+.agendado {
+  background-color: green; /* Puedes cambiar a cualquier color que desees */
+  color: white;
+}
